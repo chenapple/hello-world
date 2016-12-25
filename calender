@@ -1,0 +1,113 @@
+import java.io.*;
+public class calender
+{
+	public static void main(String[] args) throws IOException
+	{
+
+		int year,month;
+		
+		int[] temp_month={31,28,31,30,31,30,31,31,30,31,30,31,};		//月份的天數
+		int i,temp_year,days,last;
+		char[] week={'日','一','二','三','四','五','六'};
+                BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		String getbr;
+		//---------輸入--------------
+		System.out.print("請輸入西元年：");
+	        getbr=br.readLine();
+		year=Integer.parseInt(getbr);
+		System.out.print("請輸入月：");
+	        getbr=br.readLine();
+		month=Integer.parseInt(getbr);
+		
+			//---------判斷是否為閏年及計算總天數----------------------------
+			temp_year=year-1;
+			days=365*temp_year+temp_year/4-temp_year/100+temp_year/400;
+			if ((year % 4 == 0) && ((year % 100 != 0) || (year % 400 ==0)))	// 判斷該年是否為閏年，若是閏年則將該年2月的日期改為29天
+				temp_month[1]=29;
+
+			for (i=0;i<(month-1);i++)		//算總天數
+				days=days+temp_month[i];
+			days=days+1;
+			last=days % 7 ;
+			
+			
+			
+	
+             
+			for(int x=0;x<50;x++){
+				  System.out.print("*");
+				}
+			System.out.println();
+		    System.out.println(year+"年"+month+"月"+"日曆:");
+				
+				
+			for(int wek:week){
+			  System.out.printf("%c\t",wek);
+			}	
+			System.out.println();
+			
+			
+			for(int y=0;y<last;y++){
+				 System.out.print('\t');
+				}
+			System.out.print('1');
+			
+			
+			if(last!=6){
+			for(int a=2;a<=temp_month[month-1];a++){
+				++last;
+				if(last==0){
+					System.out.print(a);
+				}
+				if(last<6&&last>0)
+				{
+					System.out.print('\t');
+					System.out.print(a);
+				}
+				if(last==6)
+					{  
+						System.out.print('\t');
+						System.out.print(a);
+				    	System.out.println();
+				    	last=-1;		
+					}
+
+					
+			}
+					
+			}
+				
+				
+			else{
+				System.out.println();
+				last=0;
+				for(int a=2;a<=temp_month[month-1];a++){
+					if(last==0){
+						System.out.print(a);
+					}
+					if(last<6&&last>0)
+					{
+						System.out.print('\t');
+						System.out.print(a);
+					}
+					if(last==6)
+						{  
+							System.out.print('\t');
+							System.out.print(a);
+					    	System.out.println();
+					    	last=-1;		
+						}
+					++last;
+	               	}
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	}
+}
