@@ -1,0 +1,43 @@
+import java.io.*;
+public class guessnumber{
+	    public static int num = 0 + (int)(Math.random() * (101));
+        public static void main(String args[]) throws Exception
+        {  
+	     int a;
+	     String getbr1;
+	     BufferedReader br1= new BufferedReader(new InputStreamReader(System.in));
+           while (true)
+           {
+                do
+                {
+			            System.out.println("please input your number from 0-100:");
+                        getbr1 = br1.readLine();		          
+			            a=Integer.parseInt(getbr1);
+                 } while (a<=0);
+             guess(a);
+           }
+         }
+
+
+
+
+    static void  guess (int a) throws Exception
+    {      
+    	   
+	       if (a<num&&a>0)
+	       {
+	    	   System.out.println("the number is too small,please guess again:");
+	       }
+	       
+	       else if (num<a&&a<=100)
+	       {
+	    	   System.out.println("the number is too big,please guess again:");
+	       }
+	       else if (a==num) 
+           {
+	         System.out.println("you are right!");
+	         
+            }
+	      
+  }
+}
