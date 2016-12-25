@@ -1,0 +1,100 @@
+import java.io.*;
+public class Name
+{
+	public static void main(String args[]) throws Exception
+
+    {  //程式進入點
+
+    String getbr,getfr,outname,getar,getcr;
+    
+    char data[]= new char[2048];//最多可以讀2K個字元
+   
+         BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+
+         int i;
+  
+         /*****請使用者輸入檔案名稱**********/
+
+         System.out.print("請輸入來源檔案名稱：");
+
+         getbr = br.readLine(); //取得input file
+
+         System.out.print("請輸入目標檔案名稱：");
+
+         outname = br.readLine(); //取得output file
+         
+        
+
+   /**** open file *********/
+
+   BufferedReader fr= new BufferedReader(new FileReader(getbr));
+
+   BufferedWriter fw= new BufferedWriter(new FileWriter(outname));
+         
+         System.out.print("原始內容：");
+         
+         FileReader ar= new FileReader(getbr);
+         
+         while (ar.ready())//如果檔案沒有讀完，就繼續處理
+             {
+             	i=ar.read(data); //取得所有資料
+             	getar=new String(data,0,i);
+                 System.out.print(getar);//寫出資料
+              }   
+         ar.close();  
+         
+         
+   while (fr.ready())//如果檔案沒有讀完，就繼續處理
+
+         {
+         	getfr = fr.readLine(); //取得一行輸入
+
+            StringBuffer strbr=new StringBuffer(getfr);
+
+             /****尋找「我」字的位置****/
+
+             if (getfr.indexOf("我")>=0) //沒有「我」就不用處理
+
+             {
+                 /****利用StringBuffer 來處理字串****/
+
+                 i=getfr.indexOf("我");
+
+                 strbr.deleteCharAt(i); //刪掉「我」
+
+                 strbr.deleteCharAt(i); //刪掉「我」
+
+                 strbr.insert(i,"在下"); //把「我」換成「在下」
+             }
+
+               fw.write(strbr.toString()); //寫入檔案
+
+               fw.newLine();
+
+           }
+   
+           fw.close(); //close file
+
+
+   System.out.println();
+   
+   System.out.print("修改後內容：");
+   
+   FileReader cr= new FileReader(outname);
+   
+   while (cr.ready())//如果檔案沒有讀完，就繼續處理
+	   
+       {
+       	i=cr.read(data); //取得所有資料
+       	
+       	getcr=new String(data,0,i);
+       	
+        System.out.print(getcr);//寫出資料
+       }
+   
+   cr.close();  
+ 
+   fr.close(); 
+     } //main 結束
+
+}
